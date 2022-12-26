@@ -2,3 +2,14 @@
 
 server:
   port: 8181
+
+# swagger
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  # thymeleaf
+  devtools:
+    livereload:
+      enabled: true
