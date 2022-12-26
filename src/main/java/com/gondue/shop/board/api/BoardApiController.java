@@ -1,8 +1,11 @@
 package com.gondue.shop.board.api;
 
+import com.gondue.shop.board.dto.BoardPostDTO;
 import com.gondue.shop.board.entity.BoardEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -46,9 +49,11 @@ public class BoardApiController {
     }
 
     @PostMapping
-    public ResponseEntity<?> register(@RequestBody BoardEntity entity) {
+    public ResponseEntity<?> register(@Validated @RequestBody BoardPostDTO postDTO, BindingResult result) {
         log.info("{} POST request!!", BASE_URL);
-        log.info("received data from client - {}", entity);
+        log.info("received data from client - {}", postDTO);
+
+        if (result.hasErrors()) return ResponseEntity.badRequest().body(result.toString());
 
         return ResponseEntity.ok().body("REG_SUCCESS");
     }
