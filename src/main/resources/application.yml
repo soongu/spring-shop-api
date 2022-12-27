@@ -13,3 +13,7 @@ spring:
   devtools:
     livereload:
       enabled: true
+
+  # datasource
+  datasource:
+    url: jdbc:mysql://localhost:3306/
